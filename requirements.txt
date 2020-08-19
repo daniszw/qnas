@@ -1,0 +1,4 @@
+pyyaml>=3.13
+numpy>=1.14.5
+mpi4py==3.0.0
+tensorflow>=1.9.0,<1.12.0

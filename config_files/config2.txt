@@ -1,0 +1,48 @@
+# Configuration file 2
+
+QNAS:
+    crossover_rate: 0.5
+    max_generations: 100
+    max_num_nodes: 20
+    num_quantum_ind: 5
+    penalize_number: 3
+    repetition: 4
+    replace_method: best
+    update_quantum_gen: 5
+    update_quantum_rate: 0.1
+    save_data_freq: 10
+
+    params_ranges:
+        decay: 0.9
+        learning_rate: 0.001
+        momentum: 0.0
+        weight_decay: 1.0e-4
+
+    function_dict:  {'conv_1_1_32':  {'function': 'ConvBlock', 'params': {'kernel': 1, 'strides': 1, 'filters': 32}, 'prob': 1.0/3.0/8.0},
+                     'conv_1_1_64':  {'function': 'ConvBlock', 'params': {'kernel': 1, 'strides': 1, 'filters': 64}, 'prob': 1.0/3.0/8.0},
+                     'conv_3_1_32':  {'function': 'ConvBlock', 'params': {'kernel': 3, 'strides': 1, 'filters': 32}, 'prob': 1.0/3.0/8.0},
+                     'conv_3_1_64':  {'function': 'ConvBlock', 'params': {'kernel': 3, 'strides': 1, 'filters': 64}, 'prob': 1.0/3.0/8.0},
+                     'conv_3_1_128': {'function': 'ConvBlock', 'params': {'kernel': 3, 'strides': 1, 'filters': 128}, 'prob': 1.0/3.0/8.0},
+                     'conv_3_1_256': {'function': 'ConvBlock', 'params': {'kernel': 3, 'strides': 1, 'filters': 256}, 'prob': 1.0/3.0/8.0},
+                     'conv_5_1_32':  {'function': 'ConvBlock', 'params': {'kernel': 5, 'strides': 1, 'filters': 32}, 'prob': 1.0/3.0/8.0},
+                     'conv_5_1_64':  {'function': 'ConvBlock', 'params': {'kernel': 5, 'strides': 1, 'filters': 64}, 'prob': 1.0/3.0/8.0},
+                     'max_pool_2_2': {'function': 'MaxPooling', 'params': {'kernel': 2, 'strides': 2}, 'prob': 1.0/3.0/2.0},
+                     'avg_pool_2_2': {'function': 'AvgPooling', 'params': {'kernel': 2, 'strides': 2}, 'prob': 1.0/3.0/2.0},
+                     'no_op':        {'function': 'NoOp', 'params': {}, 'prob': 1.0/3.0}}
+
+train:
+    batch_size: 256
+    eval_batch_size: 0
+    max_epochs: 50
+    epochs_to_eval: 5
+    optimizer: RMSProp
+
+    # Dataset
+    dataset: Cifar10
+    data_augmentation: True
+    subtract_mean: True
+
+    # Tensorflow
+    save_checkpoints_epochs: 10
+    save_summary_epochs: 0.25
+    threads: 0
