@@ -8,9 +8,8 @@ This repository contains code for the works presented in the following papers:
 [DOI](https://doi.org/10.1109/IJCNN.2019.8852453)
 >
 >2. D. Szwarcman, D. Civitarese and M. Vellasco, "Q-NAS Revisited: Exploring Evolution Fitness to Improve
->  Efficiency,"    
-2019 8th Brazilian Conference on Intelligent Systems (BRACIS), Salvador, Brazil, 2019, pp. 509-514.
-[DOI](https://doi.org/10.1109/BRACIS.2019.00095)
+>  Efficiency," 2019 8th Brazilian Conference on Intelligent Systems (BRACIS), Salvador, Brazil, 2019, pp
+>. 509-514. [DOI](https://doi.org/10.1109/BRACIS.2019.00095)
 
 
 ### Requirements
