@@ -14,7 +14,7 @@ This repository contains code for the works presented in the following papers:
 
 ### Requirements
 
-The required python packages are listed in `requirements.txt`.  
+The required python packages are listed below.  
 Make sure you have `openmpi` (https://www.open-mpi.org/) installed before installing the project requirements.   
 The program was tested using `openmpi-3.1.1`.
 
