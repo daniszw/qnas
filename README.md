@@ -265,8 +265,8 @@ python run_profiling.py \
 ---
 ### Acknowledgements
 
-This code was developed by Daniela Szwarcman while she was a PhD candidate in Electrical Engineering at PUC-Rio<sup>[1](#myfootnote1)</sup>   
-and a PhD intern at IBM Research.
+This code was developed by Daniela Szwarcman while she was a PhD candidate in Electrical Engineering at
+ PUC-Rio<sup>[1](#myfootnote1)</sup> and a PhD intern at IBM Research.
 
 <a name="myfootnote1">1</a>. Advisor: Prof. Marley Vellasco ([PUC-Rio](https://www.puc-rio.br/index.html))  
  Co-advisor: Daniel Civitarese ([IBM Research](https://www.research.ibm.com/labs/brazil/))
