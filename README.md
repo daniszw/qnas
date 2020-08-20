@@ -7,16 +7,16 @@ This repository contains code for the works presented in the following papers:
 2019 International Joint Conference on Neural Networks (IJCNN), Budapest, Hungary, 2019, pp. 1-8.
 [DOI](https://doi.org/10.1109/IJCNN.2019.8852453)
 >
->2. D. Szwarcman, D. Civitarese and M. Vellasco, "Q-NAS Revisited: Exploring Evolution Fitness to Improve Efficiency,"    
+>2. D. Szwarcman, D. Civitarese and M. Vellasco, "Q-NAS Revisited: Exploring Evolution Fitness to Improve
+>  Efficiency,"    
 2019 8th Brazilian Conference on Intelligent Systems (BRACIS), Salvador, Brazil, 2019, pp. 509-514.
 [DOI](https://doi.org/10.1109/BRACIS.2019.00095)
 
 
 ### Requirements
 
-The required python packages are listed below.  
-Make sure you have `openmpi` (https://www.open-mpi.org/) installed before installing the project requirements.   
-The program was tested using `openmpi-3.1.1`.
+The required python packages are listed below. Make sure you have `openmpi` (https://www.open-mpi.org/)
+  installed before installing the project requirements. The program was tested using `openmpi-3.1.1`.
 
 The specific versions that we used in our runs are:
 
@@ -27,8 +27,8 @@ mpi4py==3.0.0
 tensorflow==1.9.0
 ```
 
-All of our runs were executed in a multi-computer environment, with NVIDIA K80 GPUs and Power8 processors running   
-Linux (Red Hat Enterprise Linux 7.4 3).
+All of our runs were executed in a multi-computer environment, with NVIDIA K80 GPUs and Power8 processors
+ running Linux (Red Hat Enterprise Linux 7.4 3).
 
 
 ---
@@ -39,18 +39,18 @@ The entire process is divided in 3 steps (1 python script for each):
 2. Run architecture search
 3. Retrain final architecture
 
-Optionally, the user can run the script `run_profiling.py` to get the number of parameters and FLOPs   
-of one of the discovered architectures.
+Optionally, the user can run the script `run_profiling.py` to get the number of parameters and FLOPs of one
+ of the discovered architectures.
 
 
 #### 1. Dataset Preparation
 
 The user can choose to work with one of these datasets: CIFAR-10 or CIFAR-100 (dataset details [here](https://www.cs.toronto.edu/~kriz/cifar.html)).
 
-The script `run_dataset_prep.py` prepares the dataset, as described in the papers, to use for the    
-architecture search and/or retraining. If the original CIFAR is already downloaded, just point to the folder   
-with the files using the parameter `--data_path`. Otherwise, the script will download it for you and save it   
-in the location defined by `--data_path`.
+The script `run_dataset_prep.py` prepares the dataset, as described in the papers, to use for the
+ architecture search and/or retraining. If the original CIFAR is already downloaded, just point to the folder
+   with the files using the parameter `--data_path`. Otherwise, the script will download it for you and
+    save it in the location defined by `--data_path`.
 
 Here's an example of how to prepare the CIFAR-10 dataset limited to 10k examples for training and validation:
 
@@ -69,8 +69,8 @@ test_1.tfrecords
 train_1.tfrecords  
 valid_1.tfrecords  
 
-The tfrecords files contains the images and labels, `data_info.txt` includes basic information about this dataset,   
-and `cifar_train_mean.npz` is the numpy array with the mean of the training images.
+The tfrecords files contains the images and labels, `data_info.txt` includes basic information about this
+ dataset, and `cifar_train_mean.npz` is the numpy array with the mean of the training images.
 
 This example shows how to prepare the CIFAR-100 dataset, with all the available training examples:
 
@@ -90,8 +90,8 @@ Run `python run_dataset_prep.py --help` for additional parameter details.
 
 All the configurable parameters to run the architecture search with Q-NAS are set in a _yaml configuration file_.   
 This file sets 2 groups of parameters, namely: `QNAS` (parameters related to the evolution itself) and `train`   
-(parameters related to the training session conducted to evaluate the architectures). The following template shows   
-the type and meaning of each parameter in the configuration file: 
+(parameters related to the training session conducted to evaluate the architectures). The following
+ template shows the type and meaning of each parameter in the configuration file: 
 
 ```yaml
 QNAS:
@@ -135,7 +135,8 @@ train:
     threads:                 (int) number of threads for Tensorflow ops (0 -> number of logical cores)
 ```
 
-We provide 3 configuration file examples in the folder `config_files`; one can use them as-is, or modify as needed.   
+We provide 3 configuration file examples in the folder `config_files`; one can use them as-is, or modify as
+ needed.   
 In summary, the files are:
 - `config1.txt` evolves both the architecture and some hyperparameters of the network
 - `config2.txt` evolves only the architecture and adopts penalization
@@ -153,7 +154,8 @@ mpirun -n 20 python run_evolution.py \
 ```
 
 The number of workers in the MPI execution must be equal to the number of classical individuals. In `config1.txt`,   
-this number is 20 (_num_quantum_ind_ (=5) x _repetition_ (=4) = 20). The output folder `my_exp_config1` looks like this:
+this number is 20 (_num_quantum_ind_ (=5) x _repetition_ (=4) = 20). The output folder `my_exp_config1`   
+looks like this:
 
 >12_7   
 csv_data   
@@ -161,19 +163,19 @@ data_QNAS.pkl
 log_params_evolution.txt   
 log_QNAS.txt
 
-The folder `12_7` has the Tensorflow files for the best network in the evolution; in this case, is the individual   
-number `7` found in generation `12`. The folder `csv_data` has csv files with training information of the    
-individuals (loss and accuracy for the best individuals in some generations). Both of these directories are not used   
-in later steps, they are just information that one might want to inspect.
+The folder `12_7` has the Tensorflow files for the best network in the evolution; in this case, is the
+ individual number `7` found in generation `12`. The folder `csv_data` has csv files with training
+   information of the individuals (loss and accuracy for the best individuals in some generations). Both of
+    these directories are not used in later steps, they are just information that one might want to inspect.
 
-The file `data_QNAS.pkl` keeps all the evolution data (chromosomes, fitness values, number of evaluations, best    
-individual ID ...). All the parameters (configuration file and command-line) are saved in `log_params_evolution.txt`,   
-and `log_QNAS.txt` logs the evolution progression.
+The file `data_QNAS.pkl` keeps all the evolution data (chromosomes, fitness values, number of evaluations, 
+ best  individual ID ...). All the parameters (configuration file and command-line) are saved in
+  `log_params_evolution.txt`, and `log_QNAS.txt` logs the evolution progression.
 
 It is also possible to continue a finished evolution process. Note that all the parameters will be set as in   
-`log_params_evolution.txt`, ignoring the values in the file indicated by `--config_file`. The only parameter that can   
-be overwritten is `max_generations`, so that one can set for how many generations the evolution will continue.   
-To continue the above experiment for another 100 generations, the user can run:
+`log_params_evolution.txt`, ignoring the values in the file indicated by `--config_file`. The only parameter 
+  that can be overwritten is `max_generations`, so that one can set for how many generations the evolution
+  will continue. To continue the above experiment for another 100 generations, the user can run:
 
 ```shell script
 mpirun -n 20 python run_evolution.py \
@@ -189,9 +191,10 @@ Run `python run_evolution.py --help` for additional parameter details.
 
 #### 3. Retrain network
 
-After the evolution is complete, the final network can be retrained on the entire dataset (see papers for details).  
-Here's an example of how to retrain the best network of the experiment saved in `my_exp_config1` for 300 epochs with 
-the dataset in `cifar10/cifar_tfr`, using the scheme (optimizer and hyperparameters) of the evolution:
+After the evolution is complete, the final network can be retrained on the entire dataset (see papers for
+ details). Here's an example of how to retrain the best network of the experiment saved in `my_exp_config1` 
+  for 300 epochs with the dataset in `cifar10/cifar_tfr`, using the scheme (optimizer and hyperparameters) of
+  the evolution:
 
 ```shell script
 python run_retrain.py \
@@ -219,14 +222,14 @@ model.ckpt-52500.data-00000-of-00001
 model.ckpt-52500.index  
 model.ckpt-52500.meta  
 
-In the folder `best`, we have the best validation model saved. The file `log_params_retrain.txt` summarizes the 
-training parameters. The other files and folders are generated by Tensorflow, including the last model saved, the   
-graph and events for Tensorboard.
+In the folder `best`, we have the best validation model saved. The file `log_params_retrain.txt` summarizes
+ the training parameters. The other files and folders are generated by Tensorflow, including the last model
+  saved, the graph and events for Tensorboard.
 
 
-It is also possible to retrain the network with training schemes defined in the literature (check the help message for   
-the `--lr_schedule` parameter). For example, to retrain the best network of experiment `my_exp_config2` using the   
-`cosine` scheme, one can run:
+It is also possible to retrain the network with training schemes defined in the literature (check the help
+ message for the `--lr_schedule` parameter). For example, to retrain the best network of experiment
+  `my_exp_config2` using the `cosine` scheme, one can run:
 
 ```shell script
 python run_retrain.py \
@@ -241,15 +244,16 @@ python run_retrain.py \
     --run_train_eval
 ```
 
-The script `run_retrain.py` also supports retraining any individual saved in `data_QNAS.pkl`: use the parameters   
-`--generation` and `--individual` to indicate which one you want to train. Run `python run_retrain.py --help` for   
-additional parameter details.
+The script `run_retrain.py` also supports retraining any individual saved in `data_QNAS.pkl`: use the
+ parameters `--generation` and `--individual` to indicate which one you want to train. Run `python
+  run_retrain.py --help` for additional parameter details.
 
 
 #### Profile architecture
 
-If one wants to get the number of weights and the MFLOPs in a specific individual he/she can run `run_profiling.py`.   
-For example, to get the values for individual `1` of generation `50` of the experiment saved in `my_exp_config3`, run:
+If one wants to get the number of weights and the MFLOPs in a specific individual he/she can run
+ `run_profiling.py`. For example, to get the values for individual `1` of generation `50` of the experiment
+  saved in `my_exp_config3`, run:
 
 ```shell script
 python run_profiling.py \
@@ -265,5 +269,5 @@ This code was developed by Daniela Szwarcman while she was a PhD candidate in El
 and a PhD intern at IBM Research.
 
 <a name="myfootnote1">1</a>. Advisor: Prof. Marley Vellasco ([PUC-Rio](https://www.puc-rio.br/index.html))  
-    Co-advisor: Daniel Civitarese ([IBM Research](https://www.research.ibm.com/labs/brazil/))
+ Co-advisor: Daniel Civitarese ([IBM Research](https://www.research.ibm.com/labs/brazil/))
 
