@@ -10,6 +10,9 @@ This repository contains code for the works presented in the following papers:
 >2. D. Szwarcman, D. Civitarese and M. Vellasco, "Q-NAS Revisited: Exploring Evolution Fitness to Improve
 >  Efficiency," 2019 8th Brazilian Conference on Intelligent Systems (BRACIS), Salvador, Brazil, 2019, pp
 >. 509-514. [DOI](https://doi.org/10.1109/BRACIS.2019.00095)
+>
+>3. D. Szwarcman, D. Civitarese and M. Vellasco, "Quantum-inspired evolutionary algorithm applied to neural architecture search,"
+Applied Soft Computing, 2022, Volume 120, p.108674, ISSN 1568-4946. [DOI](https://doi.org/10.1016/j.asoc.2022.108674)
 
 
 ### Requirements
